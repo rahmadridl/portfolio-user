@@ -1,5 +1,5 @@
 import akun from "../../model/user.js";
-import { Op } from "sequelize";
+// import { Op } from "sequelize";
 
 const createAkun = async (data, transaction) => {
   const t = transaction ? transaction : await akun.sequelize.transaction();
@@ -34,10 +34,7 @@ const FindListAkun = async () => {
   try {
     // console.log('data_nama' + nama);
     let result = await akun.findAll({
-      where: {
-        username: {[Op.not]:null},
-        // nama: nama
-      },
+      
     });
     return result;
   } catch (error) {
