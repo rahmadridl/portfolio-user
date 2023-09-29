@@ -1,13 +1,12 @@
-const express = require("express")
+import express from "express";
+import MainRoutes from "./routes/routes.js";
+import dotenv from "dotenv";
+dotenv.config();
 const app = express()
 
-require('dotenv').config()
+app.use(express.json({ limit: "2mb" }));
+app.use(express.urlencoded(({ limit: "2mb" }, { extended: true })));
 
-app.use(express.json())
+MainRoutes(app);
 
-
-const bookRouter = require('./routes/book.router')
-
-app.use("/api/v1/books", bookRouter)
-
-app.listen(process.env.PORT, () => console.log("Server is running on port 5000"))
+app.listen(process.env.PORT, () => console.log("Server is running on port "+process.env.PORT))
