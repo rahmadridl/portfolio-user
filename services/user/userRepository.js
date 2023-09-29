@@ -29,4 +29,20 @@ const FindOneAkun = async (nama) => {
     throw new Error(error);
   }
 };
-export { createAkun, FindOneAkun };
+
+const FindListAkun = async () => {
+  try {
+    // console.log('data_nama' + nama);
+    let result = await akun.findAll({
+      where: {
+        username: {[Op.not]:null},
+        // nama: nama
+      },
+    });
+    return result;
+  } catch (error) {
+    console.error("[EXCEPTION] FindListAkun", error);
+    throw new Error(error);
+  }
+};
+export { createAkun, FindOneAkun, FindListAkun };
