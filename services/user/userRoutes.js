@@ -18,4 +18,4 @@ const AkunRoutes = (app) => {
   app.route(`/register`).post(signup);
 };
 
-module.exports = { AkunRoutes };
+module.exports = AkunRoutes;
