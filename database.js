@@ -31,7 +31,9 @@ const Sequelize = require("sequelize");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const sequelizeInstance = new Sequelize(process.env.POSTGRES_URL + "?sslmode=require");
+const sequelizeInstance = new Sequelize(process.env.POSTGRES_URL, {
+  dialectModule: require("pg"),
+});
 
 sequelizeInstance
   .authenticate()
@@ -43,4 +45,3 @@ sequelizeInstance
   });
 
 module.exports = sequelizeInstance;
-
