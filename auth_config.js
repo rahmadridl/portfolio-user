@@ -1,3 +1,7 @@
+// let secret = "bezkoder-secret-key";
+
+// export default secret;
+
 let secret = "bezkoder-secret-key";
 
-export default secret;
+module.exports = secret;

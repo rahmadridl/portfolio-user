@@ -1,8 +1,16 @@
-import { AkunRoutes } from "../services/user/userRoutes.js";
+// import { AkunRoutes } from "../services/user/userRoutes.js";
 
+
+// const MainRoutes = (app) => {
+//     AkunRoutes(app)
+// };
+
+// export default MainRoutes;
+
+const AkunRoutes = require("../services/user/userRoutes.js");
 
 const MainRoutes = (app) => {
-    AkunRoutes(app)
+  AkunRoutes(app);
 };
 
-export default MainRoutes;
+module.exports = MainRoutes;
