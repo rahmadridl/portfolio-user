@@ -58,8 +58,12 @@ const jwtsecret = require("../../auth_config.js");
 
 const read = async (req, res) => {
   try {
-    let getData = await userRepository.FindListAkun();
-    let result = { ...getData.dataValues };
+    // let getData = await userRepository.FindListAkun();
+    let result = [
+      { endpoint: "/login", method: "POST" },
+      { endpoint: "/register", method: "POST" },
+    ];
+
     return success("Read Berhasil", 200, result, res);
   } catch (error) {
     console.log(error);
