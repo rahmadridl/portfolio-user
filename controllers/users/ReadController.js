@@ -64,10 +64,10 @@ const read = async (req, res) => {
       { endpoint: "/register", method: "POST" },
     ];
 
-    return success("Read Berhasil", 200, result, res);
+    return success("API Berhasil", 200, result, res);
   } catch (error) {
     console.log(error);
-    return error_handling("Read Gagal", 404, error.message, res);
+    return error_handling("API Gagal", 404, error.message, res);
   }
 };
 
@@ -81,11 +81,11 @@ const signin = async (req, res) => {
     if (cekPassword) {
       let token = jwt.sign(
         {
-          id: getData.id,
+          user_id: getData.id,
         },
         jwtsecret,
         {
-          expiresIn: "1460d", // expires in 365 days
+          expiresIn: 86400,
         }
       );
       let result = { ...getData.dataValues, token };
@@ -99,4 +99,15 @@ const signin = async (req, res) => {
   }
 };
 
-module.exports = { read, signin };
+const readlist = async (req, res) => {
+  try {
+    let result = { id: req.app.locals.user_id, token: req.app.locals.token };
+
+    return success("Get Profil Berhasil", 200, result, res);
+  } catch (error) {
+    console.log(error);
+    return error_handling("Get Profil Gagal", 404, error.message, res);
+  }
+};
+
+module.exports = { read, signin, readlist };

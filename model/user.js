@@ -72,6 +72,15 @@ const attributes = {
     field: "password",
     autoIncrement: false,
   },
+  role: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    defaultValue: 2,
+    comment: null,
+    primaryKey: false,
+    field: "role",
+    autoIncrement: false,
+  },
 };
 
 const options = {

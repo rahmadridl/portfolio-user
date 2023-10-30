@@ -76,6 +76,32 @@ const FindOneAkun = async (nama) => {
   }
 };
 
+const FindOneAkunFilter = async (filter) => {
+  try {
+    // console.log('data_nama' + nama);
+    let result = await akun.findOne({
+      ...filter,
+    });
+    return result;
+  } catch (error) {
+    console.error("[EXCEPTION] FindOneAkunFilter", error);
+    throw new Error(error);
+  }
+};
+
+const updateAkun = async (data, filter, transaction) => {
+  const t = transaction ? transaction : await akun.sequelize.transaction();
+  try {
+    let result = await akun.update(data, { ...filter, transaction });
+    if (!transaction) t.commit();
+    return result;
+  } catch (error) {
+    if (!transaction) t.rollback();
+    console.error("[EXCEPTION] updateAkun", error);
+    throw new Error(error);
+  }
+};
+
 const FindListAkun = async () => {
   try {
     // console.log('data_nama' + nama);
@@ -87,4 +113,10 @@ const FindListAkun = async () => {
   }
 };
 
-module.exports = { createAkun, FindOneAkun, FindListAkun };
+module.exports = {
+  createAkun,
+  updateAkun,
+  FindOneAkunFilter,
+  FindOneAkun,
+  FindListAkun,
+};
